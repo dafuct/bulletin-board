@@ -1,0 +1,8 @@
+<h2>Settings</h2>
+<app-user-settings [currentFirstName]="user.firstName" [currentLastName]="user.lastName"
+                   [currentEmail]="user.email"
+                   (saveField)="updateUser($event)"
+                   [isEmail]="isEmail"></app-user-settings>
+<h2>Add new bulletin</h2>
+
+<app-create-bulletin (saveBulletin)="createBulletin($event)"></app-create-bulletin>

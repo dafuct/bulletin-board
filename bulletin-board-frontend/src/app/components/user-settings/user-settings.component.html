@@ -1,0 +1,54 @@
+<div class="settings-wrapper">
+  <div class="settings-labels">
+    <label for="firstName">First Name: </label>
+    <label for="lastName">Last Name: </label>
+    <label for="email">Email: </label>
+    <label for="password">Password: </label>
+    <label for="confirmPassword">Confirm password: </label>
+  </div>
+
+  <div class="settings-sections">
+    <div class="user-edit-section">
+      <input name="firstName" id="firstName" [(ngModel)]="firstNameValue" required maxlength="50"
+             pattern="^[A-Za-z\-]+$" #firstName="ngModel"/>
+      <button class="save-setting-btn" (click)="saveFieldClick(firstName)">Save</button>
+      <span *ngIf="firstName.errors?.pattern" class="settings-error-message">
+        Enter a valid first name
+      </span>
+    </div>
+    <div class="user-edit-section">
+      <input name="lastName" id="lastName" [(ngModel)]="lastNameValue" required maxlength="100"
+             pattern="^[A-Za-z\-]+$" #lastName="ngModel"/>
+      <button class="save-setting-btn" (click)="saveFieldClick(lastName)">Save</button>
+      <span *ngIf="lastName.errors?.pattern" class="settings-error-message">
+        Enter a valid last name
+      </span>
+    </div>
+    <div class="user-edit-section">
+      <input name="email" id="email" [(ngModel)]="emailValue" required email #email="ngModel"/>
+      <button class="save-setting-btn" (click)="saveFieldClick(email)">Save</button>
+      <span *ngIf="email.errors?.email" class="settings-error-message">
+        Enter a valid email
+      </span>
+      <span *ngIf="isEmail" class="settings-error-message">
+        This email is taken
+      </span>
+    </div>
+    <div class="user-edit-section">
+      <input name="password" id="password" [(ngModel)]="passwordValue" type="password"
+             #password="ngModel"
+             required minlength="8" maxlength="100" style="margin-bottom: 15px"/>
+      <br>
+      <input name="confirmPassword" id="confirmPassword" [(ngModel)]="confirmPasswordValue"
+             type="password"/>
+      <button class="save-setting-btn" (click)="saveFieldClick(password)">Save</button>
+      <span *ngIf="password.errors?.minlength" class="settings-error-message">
+        Password must be 8-100 characters long
+      </span>
+      <span *ngIf="!checkIfPasswordsMatch() && !password.errors?.minlength"
+            class="settings-error-message">
+        Password do not match
+      </span>
+    </div>
+  </div>
+</div>

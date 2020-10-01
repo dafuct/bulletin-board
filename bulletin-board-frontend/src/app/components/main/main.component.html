@@ -1,0 +1,19 @@
+<div>
+  <div *ngIf="!shownBulletin.length else bulletinsContent">
+    <h2>No bulletins found...</h2>
+  </div>
+  <ng-template #bulletinsContent>
+    <h2>Bulletins: {{totalResults}} found</h2>
+    <div>
+      <div *ngFor="let ad of shownBulletin">
+        <app-bulletin [bulletin]="ad" [currentUserEmail]="currentUserEmail"
+                      (deleteBulletin)="deleteBulletin(ad)">
+        </app-bulletin>
+      </div>
+    </div>
+    <ngb-pagination class="d-flex bulletin-pagination" [page]="currentPage"
+                    [pageSize]="pageSize" [collectionSize]="totalResults"
+                    [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"
+                    (pageChange)="onPageChange($event)"></ngb-pagination>
+  </ng-template>
+</div>

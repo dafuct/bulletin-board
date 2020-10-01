@@ -1,0 +1,15 @@
+h2 {
+  margin-bottom: 40px;
+}
+
+.bulletin-pagination {
+  margin-top: 30px;
+}
+
+ngb-pagination ::ng-deep ul > li:not(.active) > a {
+  background-color: red !important;
+}
+
+ngb-pagination ::ng-deep ul > li.active > a {
+  background-color: lightgreen !important;
+}

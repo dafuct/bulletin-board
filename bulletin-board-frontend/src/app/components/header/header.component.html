@@ -1,0 +1,7 @@
+<header>
+  <a routerLink="/" routerLinkActive="active-link"
+     [routerLinkActiveOptions]="{exact: true}">Home</a>
+  <a routerLink="/signin" routerLinkActive="active-link" *ngIf="!isUserAuthenticated">Sign In</a>
+  <a routerLink="/account" routerLinkActive="active-link" *ngIf="isUserAuthenticated">My profile</a>
+  <a (click)="logout($event)" *ngIf="isUserAuthenticated" style="cursor: pointer; color: #fff">Logout</a>
+</header>

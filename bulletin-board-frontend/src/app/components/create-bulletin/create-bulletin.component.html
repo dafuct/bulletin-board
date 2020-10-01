@@ -1,0 +1,46 @@
+<form [formGroup]="bulletinsForm" class="create-bulletin-form">
+  <div>
+    <div style="margin-bottom: 10px">Image</div>
+    <div *ngIf="imageUrl else uploadImage">
+      <img [src]="imageUrl" alt="bulletin_image" class="bulletin-image">
+      <button (click)="resetImage()">Reset image</button>
+    </div>
+    <ng-template #uploadImage>
+      <input name="image" type="file" accept="image/jpeg,image/png" (change)="onImageChange($event)"
+             style="display: none" #imageInput>
+      <button class="upload-image-btn" (click)="imageInput.click()">Upload image</button>
+    </ng-template>
+  </div>
+
+  <div>
+    <label for="title">Title</label>
+    <input name="title" id="title" formControlName="title"
+           [ngStyle]="{border: !isFormFieldValid('title') ? fieldErrorStyle : ''}"/>
+    <div
+      *ngIf="getFormField('title').errors?.required && getFormField('title').touched"
+      class="form-error-message">
+      {{fieldNotEmptyMessage}}
+    </div>
+    <div *ngIf="getFormField('title').errors?.maxlength"
+         class="form-error-message">
+      Title max length is 50
+    </div>
+  </div>
+
+  <div>
+    <label for="description">Description</label>
+    <textarea rows="6" name="description" id="description" formControlName="description"
+              placeholder="Type your description here"
+              [ngStyle]="{border: !isFormFieldValid('description') ? fieldErrorStyle : ''}"></textarea>
+    <div
+      *ngIf="getFormField('description').errors?.required && getFormField('description').touched"
+      class="form-error-message">
+      {{fieldNotEmptyMessage}}
+    </div>
+    <div *ngIf="getFormField('description').errors?.maxlength"
+         class="form-error-message">
+      Description max length is 500
+    </div>
+  </div>
+  <button (click)="saveBulletinClick()">Add</button>
+</form>

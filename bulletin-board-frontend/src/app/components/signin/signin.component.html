@@ -1,0 +1,27 @@
+<form [formGroup]="signinForm" class="signin-signup-form">
+  <div>
+    <div>
+      <label for="email">Email</label>
+      <input name="email" id="email" formControlName="email"
+             [ngStyle]="{border: !isFormFieldValid('email') ? fieldErrorStyle : ''}"/>
+      <div *ngIf="getFormField('email').errors?.required && getFormField('email').touched"
+           class="form-error-message">
+        {{fieldNotEmptyMessage}}
+      </div>
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input name="password" id="password" type="password" formControlName="password"
+             [ngStyle]="{border: !isFormFieldValid('password') ? fieldErrorStyle : ''}"/>
+      <div *ngIf="getFormField('password').errors?.required && getFormField('password').touched"
+           class="form-error-message">
+        {{fieldNotEmptyMessage}}
+      </div>
+    </div>
+  </div>
+  <div *ngIf="signinErrorMessage" class="form-error-message signin-error-message">
+    {{signinErrorMessage}}
+  </div>
+  <button (click)="signin()">Sign In</button>
+  <button><a routerLink="/signup">Sign Up</a></button>
+</form>

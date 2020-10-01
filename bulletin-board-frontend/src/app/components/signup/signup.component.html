@@ -1,0 +1,91 @@
+<form [formGroup]="signupForm" class="signin-signup-form">
+  <div>
+    <div>
+      <label for="firstName">First Name</label>
+      <input name="firstName" id="firstName" formControlName="firstName"
+             [ngStyle]="{border: !isFormFieldValid('firstName') ? fieldErrorStyle : ''}" />
+      <div
+        *ngIf="getFormField('firstName').errors?.required && getFormField('firstName').touched"
+        class="form-error-message">
+        {{fieldNotEmptyMessage}}
+      </div>
+      <div *ngIf="getFormField('firstName').errors?.maxlength"
+           class="form-error-message">
+        First name max length is 50
+      </div>
+      <div *ngIf="getFormField('firstName').errors?.pattern && !getFormField('firstName').errors?.maxlength"
+           class="form-error-message">
+        Enter a valid first name
+      </div>
+    </div>
+    <div>
+      <label for="lastName">Last Name</label>
+      <input name="lastName" id="lastName" formControlName="lastName"
+             [ngStyle]="{border: !isFormFieldValid('lastName') ? fieldErrorStyle : ''}" />
+      <div
+        *ngIf="getFormField('lastName').errors?.required && getFormField('lastName').touched"
+        class="form-error-message">
+        {{fieldNotEmptyMessage}}
+      </div>
+      <div *ngIf="getFormField('lastName').errors?.maxlength"
+           class="form-error-message">
+        Last name max length is 100
+      </div>
+      <div *ngIf="getFormField('lastName').errors?.pattern && !getFormField('lastName').errors?.maxlength"
+           class="form-error-message">
+        Enter a valid last name
+      </div>
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input name="email" id="email" formControlName="email" [ngStyle]="{border: !isFormFieldValid('email') ? fieldErrorStyle : ''}"
+             (focusout)="checkIfEmailExists($event)"/>
+      <div
+        *ngIf="getFormField('email').errors?.required && getFormField('email').touched"
+        class="form-error-message">
+        {{fieldNotEmptyMessage}}
+      </div>
+      <div *ngIf="getFormField('email').errors?.email"
+           class="form-error-message">
+        Enter a valid e-mail
+      </div>
+      <div *ngIf="getFormField('email').errors?.taken"
+           class="form-error-message">
+        This e-mail is taken
+      </div>
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input name="password" id="password" type="password" formControlName="password"
+             [ngStyle]="{border: !isFormFieldValid('password') ? fieldErrorStyle : ''}" />
+      <div
+        *ngIf="getFormField('password').errors?.required && getFormField('password').touched"
+        class="form-error-message">
+        {{fieldNotEmptyMessage}}
+      </div>
+      <div *ngIf="getFormField('password').errors?.minlength ||
+                      getFormField('password').errors?.maxlength"
+           class="form-error-message">
+        Password must be 8-100 characters long
+      </div>
+    </div>
+    <div>
+      <label for="confirmPassword">Confirm password</label>
+      <input name="confirmPassword" id="confirmPassword" type="password" formControlName="confirmPassword"
+             [ngStyle]="{border: !isFormFieldValid('confirmPassword') ? fieldErrorStyle : ''}" />
+      <div
+        *ngIf="getFormField('confirmPassword').errors?.required && getFormField('confirmPassword').touched"
+        class="form-error-message">
+        {{fieldNotEmptyMessage}}
+      </div>
+      <div *ngIf="getFormField('confirmPassword').errors?.mustMatch"
+           class="form-error-message">
+        Passwords do not match
+      </div>
+    </div>
+  </div>
+  <div *ngIf="signupErrorMessage" class="form-error-message register-error-message">
+    {{signupErrorMessage}}
+  </div>
+  <button (click)="signup()">Sign Up</button>
+</form>

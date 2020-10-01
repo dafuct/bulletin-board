@@ -1,0 +1,50 @@
+.single-bulletin {
+  margin-bottom: 30px;
+  padding: 10px 20px;
+  border: 1px solid #676f73;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.delete-bulletin {
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.delete-bulletin-icon {
+  display: flex;
+  float: right;
+  margin: 5px 5px 20px;
+  font-weight: bold;
+}
+
+.bulletin-content {
+  display: flex;
+}
+
+.bulletin-content > div {
+  margin-right: 50px;
+}
+
+.bulletin-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.bulletin-description {
+  margin-bottom: 30px;
+}
+
+.bulletin-image-wrapper {
+  width: 300px;
+}
+
+.single-bulletin img {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+

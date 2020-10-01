@@ -1,0 +1,45 @@
+.settings-wrapper {
+  display: flex;
+}
+
+.settings-labels {
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+}
+
+.settings-labels > label {
+  margin: 5px 0 23px;
+}
+
+.settings-sections {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-edit-section {
+  margin-bottom: 16px;
+}
+
+.user-edit-section * {
+  font-size: 1.1rem;
+}
+
+.user-edit-section span {
+  font-size: 0.9rem;
+}
+
+.user-edit-section input {
+  padding: 3px 5px;
+  margin-right: 10px;
+}
+
+.save-setting-btn {
+  padding: 3px 10px;
+  font-size: 0.5rem;
+  border-radius: 5px;
+}
+
+.settings-error-message {
+  color: red;
+}
